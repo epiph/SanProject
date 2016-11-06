@@ -1,2 +1,2 @@
 # SanProject
-A Web Application for Egerton University Health Department
+A Web Application made with Great love for the Egerton University Health Department
