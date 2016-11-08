@@ -21,6 +21,7 @@
   </head>
 
   <body>
+  <% response.setIntHeader("Refresh", 10); %>
   
    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
