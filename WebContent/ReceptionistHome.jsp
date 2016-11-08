@@ -52,10 +52,15 @@
             <li><a href="">Another nav item</a></li>
             <li><a href="">More navigation</a></li>
           </ul>
-           <span id="date_time"></span>
-            <script type="text/javascript">window.onload = date_time('date_time');</script>
+           
         </div>
      </div>
-	
+     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header text-center">Dashboard</h1>
+          <div class = "col-sm-8 col-sm-offset-8">
+	        <span id="date_time"></span>
+            <script type="text/javascript">window.onload = date_time('date_time');</script>
+          </div>
+      </div>
 </body>
 </html>
