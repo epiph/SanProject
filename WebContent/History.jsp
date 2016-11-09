@@ -20,13 +20,13 @@ SELECT * from StudeDetails;
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/dashboard.css" rel="stylesheet">
 <title>Item Page</title>
-
+<%
+		response.setIntHeader("Refresh", 10);
+	%>
 </head>
 
 <body>
-	<%
-		response.setIntHeader("Refresh", 5);
-	%>
+	
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
