@@ -1,40 +1,36 @@
 Manifest-Version: 1.0
-Ant-Version: Apache Ant 1.8.2
-Created-By: 1.5.0_22-b03 (Sun Microsystems Inc.)
-Built-By: pb2user
-Specification-Title: JDBC
-Specification-Version: 4.2
-Specification-Vendor: Oracle Corporation
-Implementation-Title: MySQL Connector Java
-Implementation-Version: 5.1.40
-Implementation-Vendor-Id: com.mysql
-Implementation-Vendor: Oracle
-Bundle-Vendor: Oracle Corporation
-Bundle-Classpath: .
-Bundle-Version: 5.1.40
-Bundle-Name: Oracle Corporation's JDBC Driver for MySQL
+Export-Package: javax.servlet.jsp.jstl.tlv;uses:="javax.xml.parsers,ja
+ vax.servlet.jsp.tagext,org.xml.sax.helpers,org.xml.sax";version="1.2"
+ ,javax.servlet.jsp.jstl.fmt;uses:="javax.servlet,javax.servlet.jsp.js
+ tl.core,javax.servlet.jsp,javax.servlet.http";version="1.2",javax.ser
+ vlet.jsp.jstl.core;uses:="javax.servlet.jsp.tagext,javax.servlet.jsp,
+ javax.servlet,javax.servlet.http,javax.el";version="1.2",javax.servle
+ t.jsp.jstl.sql;version="1.2"
+Implementation-Title: Apache Standard Taglib Specification API
+Implementation-Version: 1.2.5
+Built-By: jeremy
+Specification-Vendor: Sun Microsystems, Inc.
+Tool: Bnd-0.0.357
+Bundle-Name: Apache Standard Taglib Specification API
+Created-By: Apache Maven Bundle Plugin
+Bundle-Vendor: The Apache Software Foundation
+Build-Jdk: 1.6.0_65
+Bundle-Version: 1.2.5
+Bnd-LastModified: 1426003883344
+Specification-Title: JSR-052 JavaServer Pages Standard Tag Library Spe
+ cification
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: com.mysql.jdbc
-Export-Package: com.mysql.jdbc;version="5.1.40";uses:="com.mysql.jdbc.
- log,javax.naming,javax.net.ssl,javax.xml.transform,org.xml.sax",com.m
- ysql.jdbc.jdbc2.optional;version="5.1.40";uses:="com.mysql.jdbc,com.m
- ysql.jdbc.log,javax.naming,javax.sql,javax.transaction.xa",com.mysql.
- jdbc.log;version="5.1.40",com.mysql.jdbc.profiler;version="5.1.40";us
- es:="com.mysql.jdbc",com.mysql.jdbc.util;version="5.1.40";uses:="com.
- mysql.jdbc.log",com.mysql.jdbc.exceptions;version="5.1.40",com.mysql.
- jdbc.exceptions.jdbc4;version="5.1.40";uses:="com.mysql.jdbc",com.mys
- ql.jdbc.interceptors;version="5.1.40";uses:="com.mysql.jdbc",com.mysq
- l.jdbc.integration.c3p0;version="5.1.40",com.mysql.jdbc.integration.j
- boss;version="5.1.40",com.mysql.jdbc.configs;version="5.1.40",org.gjt
- .mm.mysql;version="5.1.40",com.mysql.fabric.jdbc;version="5.1.40";use
- s:="com.mysql.jdbc"
-Import-Package: javax.net,javax.net.ssl;version="[1.0.1, 2.0.0)";resol
- ution:=optional,javax.xml.parsers, javax.xml.stream,javax.xml.transfo
- rm,javax.xml.transform.dom,javax.xml.transform.sax,javax.xml.transfor
- m.stax,javax.xml.transform.stream,org.w3c.dom,org.xml.sax,org.xml.sax
- .helpers;resolution:=optional,javax.naming,javax.naming.spi,javax.sql
- ,javax.transaction.xa;version="[1.0.1, 2.0.0)";resolution:=optional,c
- om.mchange.v2.c3p0;version="[0.9.1.2, 1.0.0)";resolution:=optional,or
- g.jboss.resource.adapter.jdbc;resolution:=optional,org.jboss.resource
- .adapter.jdbc.vendor;resolution:=optional
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-Description: An implementation of the JSP Standard Tag Library 
+ (JSTL) Specification API.
+Bundle-DocURL: http://tomcat.apache.org/taglibs/standard-1.2.5/taglibs
+ -standard-spec
+Bundle-SymbolicName: org.apache.taglibs.taglibs-standard-spec;singleto
+ n=true
+Import-Package: javax.el,javax.servlet,javax.servlet.http,javax.servle
+ t.jsp,javax.servlet.jsp.jstl.core;version="1.2",javax.servlet.jsp.jst
+ l.fmt;version="1.2",javax.servlet.jsp.jstl.sql;version="1.2",javax.se
+ rvlet.jsp.jstl.tlv;version="1.2",javax.servlet.jsp.tagext,javax.xml.p
+ arsers,org.xml.sax,org.xml.sax.helpers
+Specification-Version: 1.2
 
