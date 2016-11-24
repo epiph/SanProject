@@ -41,30 +41,31 @@
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
+				<li class="placeholder">&nbsp; &nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/details.jpg"
+					width="150" height="150" class="img-responsive"
+					alt="Generic placeholder thumbnail"> <%-- <span class="text-muted center">Receptionist</span>--%>
+				</li>
 				<li class="active"><a href="#">Overview <span
 						class="sr-only">(current)</span></a></li>
 				<li><a href="#">Reports</a></li>
 				<li><a href="#">Analytics</a></li>
-				<li><a href="#">Export</a></li>
+				<li><a href="History.jsp">History (Today)</a></li>
 			</ul>
-			<ul class="nav nav-sidebar">
-				<li><a href="">Nav item</a></li>
-				<li><a href="">Nav item again</a></li>
-				<li><a href="">One more nav</a></li>
-				<li><a href="">Another nav item</a></li>
-				<li><a href="">More navigation</a></li>
-			</ul>
+
 
 		</div>
 	</div>
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-		<h1 class="page-header text-center">Dashboard</h1>
-		<div class="col-sm-8 col-sm-offset-8">
-			<span id="date_time"></span>
-			<script type="text/javascript">
-				window.onload = date_time('date_time');
-			</script>
-		</div>
+		<h3 class="page-header pull-left">
+			Dashboard
+			<h3 class="page-header pull-right">
+				<span id="date_time"></span>
+				<script type="text/javascript">
+					window.onload = date_time('date_time');
+				</script>
+			</h3>
+		</h3>
 	</div>
 </body>
 </html>

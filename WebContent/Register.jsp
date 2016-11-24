@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +21,16 @@
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/navbar-fixed-top.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+
+<sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://localhost/Stude" user="root" password=" " />
+
+<sql:query dataSource="${snapshot}" var="result">
+SELECT * from StudeDetails where regNumber = ?
+<sql:param value="${param.regNumber}"></sql:param>
+</sql:query>
 
 
 </head>
@@ -42,7 +57,8 @@
 					<li><a href="#">Help</a></li>
 				</ul>
 				<form class="navbar-form navbar-right">
-					<input type="text" class="form-control" placeholder="Search...">
+					<input type="text" class="form-control" placeholder="Search Reg No."
+						name="regNumber">
 				</form>
 			</div>
 		</div>
@@ -56,15 +72,18 @@
 			<p class="lead small text-center">Ensure you enter each detail
 				correctly, then press the Submit Button to post the request]</p>
 
-
 			<form action="Register" class="form-horizontal" method="POST">
+				<table class = "table table-striped">
+					<c:forEach var="row" items="${result.rows}">
+						
+							
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Registration Number</label>
 
 					<div class="col-sm-6">
 						<input name="regNumber" type="text" class="form-control"
-							placeholder="Reg. Number">
+							placeholder="Reg. Number"value="${row.regNumber}">
 					</div>
 				</div>
 				<div class="form-group">
@@ -72,7 +91,7 @@
 
 					<div class="col-sm-6">
 						<input name="firstName" type="text" class="form-control"
-							placeholder="First Name">
+							placeholder="First Name" value="${row.firstName}">
 					</div>
 				</div>
 
@@ -81,18 +100,15 @@
 
 					<div class="col-sm-6">
 						<input name="lastName" type="text" class="form-control"
-							placeholder="Last Name">
+							placeholder="Last Name" value="${row.lastName}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Gender</label>
-					<div class="col-sm-6">
-						<select name="gender" class="form-control">
-							<option>Male</option>
-							<option>Female</option>
-							<option>Other</option>
 
-						</select>
+					<div class="col-sm-6">
+						<input name="lastName" type="text" class="form-control"
+							placeholder="Last Name" value="${row.gender}">
 					</div>
 				</div>
 				<div class="form-group">
@@ -100,7 +116,7 @@
 
 					<div class="col-sm-6">
 						<input name="faculty" type="text" class="form-control"
-							placeholder="Faculty">
+							placeholder="Faculty" value="${row.firstName}">
 					</div>
 				</div>
 
@@ -109,7 +125,7 @@
 
 					<div class="col-sm-6">
 						<input name="department" type="text" class="form-control"
-							placeholder="Department">
+							placeholder="Department" value="${row.department}">
 					</div>
 				</div>
 
@@ -132,6 +148,8 @@
 
 				</div>
 
+					</c:forEach>
+				</table>
 			</form>
 		</div>
 

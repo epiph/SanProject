@@ -19,14 +19,14 @@ SELECT * from StudeDetails;
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/dashboard.css" rel="stylesheet">
-<title>Item Page</title>
+<title>Pulse | Queue</title>
 <%
-		response.setIntHeader("Refresh", 10);
-	%>
+	response.setIntHeader("Refresh", 10);
+%>
 </head>
 
 <body>
-	
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -53,10 +53,23 @@ SELECT * from StudeDetails;
 			</div>
 		</div>
 	</nav>
+	<div class="row">
+		<div class="col-sm-3 col-md-2 sidebar">
+			<ul class="nav nav-sidebar">
+				<li class="active"><a href="#">Overview <span
+						class="sr-only">(current)</span></a></li>
+				<li><a href="#">Reports</a></li>
+				<li><a href="#">Analytics</a></li>
+				<li><a href="#">Export</a></li>
+			</ul>
+
+
+		</div>
+	</div>
 	<h2 class="sub-header text-center">History</h2>
 
-	<div class="table-responsive">
-		<table class="table table-striped">
+	<div class="table-responsive col-sm-8 col-sm-offset-2">
+		<table class="table table-striped table-hover table-bordered">
 			<thead>
 				<tr>
 					<th>Reg. Number</th>
@@ -73,6 +86,8 @@ SELECT * from StudeDetails;
 						<td><c:out value="${student.firstName}" /></td>
 						<td><c:out value="${student.lastName}" /></td>
 						<td><c:out value="${student.gender}" /></td>
+						<td><button class="btn btn-danger text-center"
+								type="reset">Remove</button></td>
 					</tr>
 				</c:forEach>
 		</table>

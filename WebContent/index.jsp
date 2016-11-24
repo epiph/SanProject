@@ -67,11 +67,11 @@ body {
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<%
-									if(request.getAttribute("errors")!=null){
-										
+									if (request.getAttribute("errors") == null) {
 								%>
 								<div>
-								<p> Errors</p>
+
+									<p>Errors</p>
 								</div>
 								<%
 									}
@@ -89,9 +89,13 @@ body {
 											<input class="form-control" placeholder="Password"
 												name="password" type="password" value="">
 										</div>
-
+								<div class="form-group">
+											<input class="form-control" placeholder="Role"
+												name="role" type="text" value="">
+										</div>
 										<input class="btn btn-lg btn-success btn-block" type="submit"
 											value="Login">
+
 									</fieldset>
 								</form>
 							</div>
