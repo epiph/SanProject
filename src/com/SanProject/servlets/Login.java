@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,26 +52,33 @@ public class Login extends HttpServlet {
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+//		String role = request.getParameter("role");
 		Connection conn = null;
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Stude",
 					"root", " ");
-			System.out.print("Success");
+			System.out.print("Successfully Connected");
 			PreparedStatement state = conn
-					.prepareStatement("SELECT * FROM Users WHERE userName = ? AND passWord= ?");
+					.prepareStatement("SELECT Role FROM Users WHERE userName = ? AND passWord= ?");
 
 			state.setString(1, username);
 			state.setString(2, password);
+			
 			ResultSet rs = state.executeQuery();
 			if (rs.next()) {
-				HttpSession session = request.getSession(true);
-				session.setAttribute("Welcome", username);
-				// response.sendRedirect("Register.jsp");
-				RequestDispatcher dispatcher = request
-						.getRequestDispatcher("Register.jsp");
-				dispatcher.forward(request, response);
+				String userRole = rs.getString("Role");
+				if("Admin".equals(userRole)){
+				HttpSession session = request.getSession();
+				session.setAttribute("user", username);
+				response.sendRedirect("Register.jsp");
+
+				}
+				else if("Reception".equals(userRole)){
+					response.sendRedirect("Developers.jsp");
+				}
+				
 			} else {
 				response.sendRedirect("index.jsp");
 				out.println("Wrong username and password combo");
@@ -81,11 +87,6 @@ public class Login extends HttpServlet {
 			}
 		} catch (SQLException | ClassNotFoundException e) {
 			out.println("SQLException:" + e.getMessage());
-		}
-		if ((Boolean)request.getAttribute("errors")){
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-			dispatcher.forward(request, response);
-			
 		}
 	}
 
