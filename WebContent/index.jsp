@@ -89,10 +89,7 @@ body {
 											<input class="form-control" placeholder="Password"
 												name="password" type="password" value="">
 										</div>
-								<div class="form-group">
-											<input class="form-control" placeholder="Role"
-												name="role" type="text" value="">
-										</div>
+										
 										<input class="btn btn-lg btn-success btn-block" type="submit"
 											value="Login">
 
