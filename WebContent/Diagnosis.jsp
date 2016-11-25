@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Pulse | Diagnosis & Prescription</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap3-wysihtml5.min.css" rel="stylesheet">
+
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
 <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
@@ -60,24 +60,23 @@
 					<br> Use the forms below to capture the patient's Diagnosis
 					and Prescription <br>
 				</h2>
-				<small>Diagnosis</small>
+				
 
 			</div>
 
 			<div>
 				<form method="POST">
-					<textarea class="textarea"
-						style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;"
-						name="diagnosis">
-				</textarea>
-					<hr>
-					<br>
-					<p>Prescription</p>
-					<textarea class="textarea"
-						style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd;"
-						placeholder="Descto" name="prescription">
-				</textarea>
+					<div class="form-group">
+						<label for="Diagnosis">Diagnosis</label>
+						<textarea class="form-control" rows="5" id="diagnosis"
+							name="diagnosis"></textarea>
+					</div>
 					<br> <br>
+					<div class="form-group">
+						<label for="Prescription">Prescription</label>
+						<textarea class="form-control" rows="5" id="prescription"
+							name="prescription"></textarea>
+					</div>
 					<div>
 						<button id="btnSubmit" type="submit"
 							class="btn btn-primary col-md-8">Add to Queue</button>
