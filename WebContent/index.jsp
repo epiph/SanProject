@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,11 +68,10 @@ body {
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<%
-									if (request.getAttribute("errors") == null) {
+									if (request.getAttribute("errors") != null) {
 								%>
 								<div>
-
-									<p>Errors</p>
+									<p>Ensure you input a valid username and password to login</p>
 								</div>
 								<%
 									}
@@ -89,7 +89,7 @@ body {
 											<input class="form-control" placeholder="Password"
 												name="password" type="password" value="">
 										</div>
-										
+
 										<input class="btn btn-lg btn-success btn-block" type="submit"
 											value="Login">
 
