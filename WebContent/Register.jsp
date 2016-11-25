@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page session="true" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -57,8 +58,8 @@ SELECT * from StudeDetails where regNumber = ?
 					<li><a href="#">Help</a></li>
 				</ul>
 				<form class="navbar-form navbar-right">
-					<input type="text" class="form-control" placeholder="Search Reg No."
-						name="regNumber">
+					<input type="text" class="form-control"
+						placeholder="Search Reg No." name="regNumber">
 				</form>
 			</div>
 		</div>
@@ -67,86 +68,99 @@ SELECT * from StudeDetails where regNumber = ?
 
 	<div class="container">
 		<div class="col-md-8 col-md-offset-2">
-			<p class="lead text-center">Use the following form to fill in the
-				details of Patient and add him/her to the queue</p>
-			<p class="lead small text-center">Ensure you enter each detail
-				correctly, then press the Submit Button to post the request]</p>
+			<p class="lead text-center">Use the following search bar to get
+				the details of the patient</p>
+			<p class="lead small text-center">Ensure you enter the
+				Registration Number correctly, then press the Submit Button to post
+				the request</p>
 
-			<form action="Register" class="form-horizontal" method="POST">
-				<table class = "table table-striped">
+
+			<form class="form-inline col-md-8 col-md-offset-4" role="form" method="post">
+				<div class="form-group">
+					<label class="sr-only" for="regNumber">Registration Number</label>
+					<input type="text" placeholder="Search Reg No."
+						class="form-control" id="regNumber" name="regNumber">
+				</div>
+				<button type="submit" class="btn btn-default">Query</button>
+			</form>
+
+			<hr>
+			<hr>
+			<form action="Register" class="form-horizontal" method="GET">
+				<table class="table table-striped">
 					<c:forEach var="row" items="${result.rows}">
-						
-							
-
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Registration Number</label>
-
-					<div class="col-sm-6">
-						<input name="regNumber" type="text" class="form-control"
-							placeholder="Reg. Number"value="${row.regNumber}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">First Name</label>
-
-					<div class="col-sm-6">
-						<input name="firstName" type="text" class="form-control"
-							placeholder="First Name" value="${row.firstName}">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Last Name</label>
-
-					<div class="col-sm-6">
-						<input name="lastName" type="text" class="form-control"
-							placeholder="Last Name" value="${row.lastName}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Gender</label>
-
-					<div class="col-sm-6">
-						<input name="lastName" type="text" class="form-control"
-							placeholder="Last Name" value="${row.gender}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Faculty</label>
-
-					<div class="col-sm-6">
-						<input name="faculty" type="text" class="form-control"
-							placeholder="Faculty" value="${row.firstName}">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Department</label>
-
-					<div class="col-sm-6">
-						<input name="department" type="text" class="form-control"
-							placeholder="Department" value="${row.department}">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Doctor's Name</label>
-
-					<div class="col-sm-6">
-						<input name="doctor" type="text" class="form-control"
-							placeholder="Doctor's Name">
-					</div>
-				</div>
 
 
-				<div>
 
-					<button id="btnSubmit" type="submit"
-						class="btn btn-primary col-md-8">Add to Queue</button>
-					<button id="btnCancel" type="reset"
-						class="btn btn-danger pull-right col-md-3">Cancel</button>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Registration Number</label>
 
-				</div>
+							<div class="col-sm-6">
+								<input name="regNumber" type="text" class="form-control"
+									placeholder="Reg. Number" value="${row.regNumber}" disabled>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">First Name</label>
+
+							<div class="col-sm-6">
+								<input name="firstName" type="text" class="form-control"
+									placeholder="First Name" value="${row.firstName}" disabled>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Last Name</label>
+
+							<div class="col-sm-6">
+								<input name="lastName" type="text" class="form-control"
+									placeholder="Last Name" value="${row.lastName}" disabled>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Gender</label>
+
+							<div class="col-sm-6">
+								<input name="gender" type="text" class="form-control"
+									placeholder="Gender" value="${row.gender}" disabled>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Faculty</label>
+
+							<div class="col-sm-6">
+								<input name="faculty" type="text" class="form-control"
+									placeholder="Faculty" value="${row.faculty}" disabled>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Department</label>
+
+							<div class="col-sm-6">
+								<input name="department" type="text" class="form-control"
+									placeholder="Department" value="${row.department}" disabled>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Doctor's Name</label>
+
+							<div class="col-sm-6">
+								<input name="doctor" type="text" class="form-control"
+									placeholder="Doctor's Name">
+							</div>
+						</div>
+
+
+						<div>
+
+							<button id="btnSubmit" type="submit"
+								class="btn btn-primary col-md-8">Add to Queue</button>
+							<button id="btnCancel" type="reset"
+								class="btn btn-danger pull-right col-md-3">Cancel</button>
+
+						</div>
 
 					</c:forEach>
 				</table>
