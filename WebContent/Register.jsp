@@ -86,7 +86,7 @@ SELECT * from StudeDetails where regNumber = ?
 
 			<hr>
 			<hr>
-			<form action="Register" class="form-horizontal" method="GET">
+			<form action="Register" class="form-horizontal" method="POST">
 				<table class="table table-striped">
 					<c:forEach var="row" items="${result.rows}">
 
