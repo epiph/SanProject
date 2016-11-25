@@ -1,7 +1,4 @@
-
-
-
-<%@ page session="false" pageEncoding="UTF-8"%>
+<%@ page session="true" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
@@ -19,6 +16,7 @@ SELECT * from StudeDetails;
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/dashboard.css" rel="stylesheet">
+<script type="text/javascript" src="js/date_time.js"></script>
 <title>Pulse | Queue</title>
 <%
 	response.setIntHeader("Refresh", 10);
@@ -66,10 +64,19 @@ SELECT * from StudeDetails;
 
 		</div>
 	</div>
-	<h2 class="sub-header text-center">History</h2>
-
+	<div class="col-sm-8 col-sm-offset-3">
+		<h2 class="sub-header pull-left">
+			History
+			<h2 class="sub-header pull-right">
+				<span id="date_time"></span>
+				<script type="text/javascript">
+					window.onload = date_time('date_time');
+				</script>
+			</h2>
+		</h2>
+	</div>
 	<div class="table-responsive col-sm-8 col-sm-offset-2">
-		<table class="table table-striped table-hover table-bordered">
+		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
 					<th>Reg. Number</th>
@@ -82,12 +89,14 @@ SELECT * from StudeDetails;
 
 				<c:forEach var="student" items="${result.rows}">
 					<tr>
-						<td><c:out value="${student.regNumber}" /></td>
+
+						<td><a
+							href="Diagnosis.jsp?regNumber=<c:out value="${student.regNumber}"/>"><c:out
+									value="${student.regNumber}" /></a></td>
 						<td><c:out value="${student.firstName}" /></td>
 						<td><c:out value="${student.lastName}" /></td>
 						<td><c:out value="${student.gender}" /></td>
-						<td><button class="btn btn-danger text-center"
-								type="reset">Remove</button></td>
+
 					</tr>
 				</c:forEach>
 		</table>
