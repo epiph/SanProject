@@ -8,8 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,11 +50,10 @@ public class Login extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
-		request.setAttribute("errors", false);
+//		request.setAttribute("errors", false);
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-//		String role = request.getParameter("role");
 		Connection conn = null;
 		try {
 
@@ -60,6 +61,8 @@ public class Login extends HttpServlet {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Stude",
 					"root", " ");
 			System.out.print("Successfully Connected");
+			
+			// We extract the value of the column "Role" from the DB, based on the Username and Password Combination entered in by the user
 			PreparedStatement state = conn
 					.prepareStatement("SELECT Role FROM Users WHERE userName = ? AND passWord= ?");
 
@@ -68,22 +71,42 @@ public class Login extends HttpServlet {
 			
 			ResultSet rs = state.executeQuery();
 			if (rs.next()) {
+				
+				// We check the String from the value extracted from the  DB
 				String userRole = rs.getString("Role");
+				
+				// If the string equals "Admin", we redirect the user to the "Register.jsp" page
 				if("Admin".equals(userRole)){
-				HttpSession session = request.getSession();
-				session.setAttribute("user", username);
-				response.sendRedirect("Register.jsp");
-
+//				HttpSession session = request.getSession();
+//				session.setAttribute("user", username);
+					Cookie cookie = new Cookie("user", username);
+					response.addCookie(cookie);
+				
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher("Register.jsp");
+				dispatcher.forward(request, response);
+				
+				
 				}
+				//If the value of the string equals "Reception", we redirect the user to the "Developers.jsp" Page
 				else if("Reception".equals(userRole)){
-					response.sendRedirect("Developers.jsp");
+//					HttpSession session = request.getSession();
+//					session.setAttribute("user", username);
+					Cookie cookie = new Cookie("user", username);
+					response.addCookie(cookie);
+					RequestDispatcher dispatcher = request
+							.getRequestDispatcher("Developers.jsp");
+					dispatcher.forward(request, response);
+					
 				}
 				
 			} else {
-				response.sendRedirect("index.jsp");
+				// If the user entered the wrong username+password combination, we redirect them to the login page
 				out.println("Wrong username and password combo");
 				request.setAttribute("errors", true);
-				
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher("index.jsp");
+				dispatcher.forward(request, response);
 			}
 		} catch (SQLException | ClassNotFoundException e) {
 			out.println("SQLException:" + e.getMessage());
