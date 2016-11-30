@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page session="true" %>
+<%@ page session="true"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -21,7 +21,7 @@
 
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/navbar-fixed-top.css" rel="stylesheet">
+
 <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 
@@ -29,7 +29,7 @@
 	url="jdbc:mysql://localhost/Stude" user="root" password=" " />
 
 <sql:query dataSource="${snapshot}" var="result">
-SELECT * from StudeDetails where regNumber = ?
+SELECT * from Students where regNumber = ?
 <sql:param value="${param.regNumber}"></sql:param>
 </sql:query>
 
@@ -37,6 +37,12 @@ SELECT * from StudeDetails where regNumber = ?
 </head>
 
 <body>
+<%
+	if (session.getAttribute("user")==null){
+		
+		response.sendRedirect("index.jsp");
+	}
+%>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
@@ -52,7 +58,7 @@ SELECT * from StudeDetails where regNumber = ?
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="History.jsp">History</a></li>
+					<li><a href="doctorhome.jsp">History</a></li>
 					<li><a href="#">Settings</a></li>
 					<li><a href="#">Profile</a></li>
 					<li><a href="#">Help</a></li>
@@ -67,6 +73,8 @@ SELECT * from StudeDetails where regNumber = ?
 
 
 	<div class="container">
+		<hr>
+		<br>
 		<div class="col-md-8 col-md-offset-2">
 			<p class="lead text-center">Use the following search bar to get
 				the details of the patient</p>
@@ -75,29 +83,29 @@ SELECT * from StudeDetails where regNumber = ?
 				the request</p>
 
 
-			<form class="form-inline col-md-8 col-md-offset-4" role="form" method="post">
+			<form class="form-inline col-md-8 col-md-offset-4" role="form"
+				method="post">
 				<div class="form-group">
 					<label class="sr-only" for="regNumber">Registration Number</label>
 					<input type="text" placeholder="Search Reg No."
 						class="form-control" id="regNumber" name="regNumber">
 				</div>
-				<button type="submit" class="btn btn-default">Query</button>
+				<button title="Search Database for the Student Details"
+					type="submit" class="btn btn-success">Query</button>
 			</form>
 
 			<hr>
 			<hr>
-			<form action="Register" class="form-horizontal" method="POST">
+			<form action="AddPatient" class="form-horizontal" method="POST">
 				<table class="table table-striped">
 					<c:forEach var="row" items="${result.rows}">
-
-
 
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Registration Number</label>
 
 							<div class="col-sm-6">
 								<input name="regNumber" type="text" class="form-control"
-									placeholder="Reg. Number" value="${row.regNumber}" disabled>
+									placeholder="Reg. Number" value="${row.regNumber}" readonly>
 							</div>
 						</div>
 						<div class="form-group">
@@ -105,7 +113,7 @@ SELECT * from StudeDetails where regNumber = ?
 
 							<div class="col-sm-6">
 								<input name="firstName" type="text" class="form-control"
-									placeholder="First Name" value="${row.firstName}" disabled>
+									placeholder="First Name" value="${row.firstName}" readonly>
 							</div>
 						</div>
 
@@ -114,7 +122,7 @@ SELECT * from StudeDetails where regNumber = ?
 
 							<div class="col-sm-6">
 								<input name="lastName" type="text" class="form-control"
-									placeholder="Last Name" value="${row.lastName}" disabled>
+									placeholder="Last Name" value="${row.lastName}" readonly>
 							</div>
 						</div>
 						<div class="form-group">
@@ -122,7 +130,7 @@ SELECT * from StudeDetails where regNumber = ?
 
 							<div class="col-sm-6">
 								<input name="gender" type="text" class="form-control"
-									placeholder="Gender" value="${row.gender}" disabled>
+									placeholder="Gender" value="${row.gender}" readonly>
 							</div>
 						</div>
 						<div class="form-group">
@@ -130,7 +138,7 @@ SELECT * from StudeDetails where regNumber = ?
 
 							<div class="col-sm-6">
 								<input name="faculty" type="text" class="form-control"
-									placeholder="Faculty" value="${row.faculty}" disabled>
+									placeholder="Faculty" value="${row.faculty}" readonly>
 							</div>
 						</div>
 
@@ -139,7 +147,7 @@ SELECT * from StudeDetails where regNumber = ?
 
 							<div class="col-sm-6">
 								<input name="department" type="text" class="form-control"
-									placeholder="Department" value="${row.department}" disabled>
+									placeholder="Department" value="${row.department}" readonly>
 							</div>
 						</div>
 

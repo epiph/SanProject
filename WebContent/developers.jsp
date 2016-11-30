@@ -1,15 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page session="true" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Pulse | Dev Team</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/dashboard.css" rel="stylesheet">
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
+
 <body>
+<%
+	if (session.getAttribute("user")==null){
+		response.sendRedirect("index.jsp");
+	}
+%>
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -24,7 +35,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="History.jsp">Services</a></li>
+				<li><a href="doctorhome.jsp">Services</a></li>
 				<li><a href="#">Privacy</a></li>
 				<li><a href="#">T&C</a></li>
 				

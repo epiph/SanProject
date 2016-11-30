@@ -7,7 +7,7 @@
 
 
 <sql:query dataSource="${snapshot}" var="result">
-SELECT * from StudeDetails;
+SELECT * from History order by TreatmentDate;
 </sql:query>
 
 <html>
@@ -16,6 +16,7 @@ SELECT * from StudeDetails;
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/dashboard.css" rel="stylesheet">
+
 <script type="text/javascript" src="js/date_time.js"></script>
 <title>Pulse | Queue</title>
 <%
@@ -24,6 +25,13 @@ SELECT * from StudeDetails;
 </head>
 
 <body>
+<%
+	if (session.getAttribute("user")==null){
+		
+		response.sendRedirect("index.jsp");
+	}
+%>
+
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
@@ -39,7 +47,7 @@ SELECT * from StudeDetails;
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="History.jsp">History</a></li>
+					<li><a href="doctorhome.jsp">Main</a></li>
 					<li><a href="#">Settings</a></li>
 					<li><a href="#">Profile</a></li>
 					<li><a href="#">Help</a></li>
@@ -51,22 +59,10 @@ SELECT * from StudeDetails;
 			</div>
 		</div>
 	</nav>
-	<div class="row">
-		<div class="col-sm-3 col-md-2 sidebar">
-			<ul class="nav nav-sidebar">
-				<li class="active"><a href="#">Overview <span
-						class="sr-only">(current)</span></a></li>
-				<li><a href="#">Reports</a></li>
-				<li><a href="#">Analytics</a></li>
-				<li><a href="#">Export</a></li>
-			</ul>
-
-
-		</div>
-	</div>
+	
 	<div class="col-sm-8 col-sm-offset-3">
 		<h2 class="sub-header pull-left">
-			History
+			Todays Queue:
 			<h2 class="sub-header pull-right">
 				<span id="date_time"></span>
 				<script type="text/javascript">
@@ -80,9 +76,7 @@ SELECT * from StudeDetails;
 			<thead>
 				<tr>
 					<th>Reg. Number</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Gender</th>
+					<th>Time</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -90,12 +84,9 @@ SELECT * from StudeDetails;
 				<c:forEach var="student" items="${result.rows}">
 					<tr>
 
-						<td><a
-							href="Diagnosis.jsp?regNumber=<c:out value="${student.regNumber}"/>"><c:out
-									value="${student.regNumber}" /></a></td>
-						<td><c:out value="${student.firstName}" /></td>
-						<td><c:out value="${student.lastName}" /></td>
-						<td><c:out value="${student.gender}" /></td>
+						<td><c:out value="${student.regNumber}" /></td>
+
+						<td><a href='history.jsp?regNumber=<c:out value="${student.regNumber}" />&TreatmentDate=<c:out value="${student.TreatmentDate}" />'><c:out value="${student.TreatmentDate}" /></a></td>
 
 					</tr>
 				</c:forEach>

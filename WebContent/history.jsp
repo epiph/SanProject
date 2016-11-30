@@ -11,18 +11,33 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<script>
+	function confirmGo(m, u) {
+		if (confirm(m)) {
+			window.location = u;
+		}
+	}
+</script>
 
 <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
 	url="jdbc:mysql://localhost/Stude" user="root" password=" " />
 
-<sql:update dataSource="${snapshot}" var="result">
- insert into DoctorToPharmacist values(?,?,?)
+<sql:query dataSource="${snapshot}" var="result">
+select * from History where regNumber = ? and TreatmentDate = ?
 <sql:param value="${param.regNumber}"></sql:param>
-	<sql:param value="${param.diagnosis}"></sql:param>
-	<sql:param value="${param.prescription}"></sql:param>
-</sql:update>
+<sql:param value="${param.TreatmentDate}"></sql:param>
+
+</sql:query>
 </head>
 <body>
+
+<%-- Let's set the session attribute --%>
+<%
+	if (session.getAttribute("user")==null){
+		
+		response.sendRedirect("index.jsp");
+	}
+%>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
@@ -39,7 +54,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="History.jsp">History</a></li>
+				<li><a href="doctorhome.jsp">Back</a></li>
 				<li><a href="#">Settings</a></li>
 				<li><a href="#">Profile</a></li>
 				<li><a href="#">Help</a></li>
@@ -57,10 +72,14 @@
 		<div class="col-sm-6 col-sm-offset-3">
 			<div class="">
 				<h2 class="sub-header pull-left">
-					<br> Use the forms below to capture the patient's Diagnosis
-					and Prescription <br>
+					<br> These are the Medical records for the Patient
+					<c:forEach var="student" items="${result.rows}">
+						<c:out value="${student.regNumber}" /> at <c:out
+							value="${student.TreatmentDate}" />
+					</c:forEach>
+					<br>
 				</h2>
-				
+
 
 			</div>
 
@@ -69,21 +88,24 @@
 					<div class="form-group">
 						<label for="Diagnosis">Diagnosis</label>
 						<textarea class="form-control" rows="5" id="diagnosis"
-							name="diagnosis"></textarea>
+							name="diagnosis" value="${student.diagnosis}" readonly>
+							<c:forEach var="student" items="${result.rows}">
+								<c:out value="${student.diagnosis}" />
+							</c:forEach>
+							</textarea>
+
 					</div>
 					<br> <br>
 					<div class="form-group">
 						<label for="Prescription">Prescription</label>
 						<textarea class="form-control" rows="5" id="prescription"
-							name="prescription"></textarea>
-					</div>
-					<div>
-						<button id="btnSubmit" type="submit"
-							class="btn btn-primary col-md-8">Add to Queue</button>
-						<button id="btnCancel" type="reset"
-							class="btn btn-danger pull-right col-md-3">Cancel</button>
+							name="prescription" value="${student.prescription}" readonly>
+							<c:forEach var="student" items="${result.rows}">
+								<c:out value="${student.prescription}" />
+							</c:forEach></textarea>
 
 					</div>
+
 
 				</form>
 

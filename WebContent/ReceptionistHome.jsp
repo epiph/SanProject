@@ -1,8 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page session ="true" language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Pulse | Home - Reception</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -10,6 +14,12 @@
 <script type="text/javascript" src="js/date_time.js"></script>
 </head>
 <body>
+
+<%
+	if (session.getAttribute("user")==null){
+		response.sendRedirect("index.jsp");
+	}
+%>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
@@ -31,7 +41,8 @@
 				<li><a href="#">Help</a></li>
 			</ul>
 			<form class="navbar-form navbar-right">
-				<input type="text" class="form-control" placeholder="Search...">
+				<input type="text" class="form-control" placeholder="Search..."
+					title="Search anything here">
 			</form>
 		</div>
 	</div>
@@ -46,11 +57,10 @@
 					width="150" height="150" class="img-responsive"
 					alt="Generic placeholder thumbnail"> <%-- <span class="text-muted center">Receptionist</span>--%>
 				</li>
-				<li class="active"><a href="#">Overview <span
-						class="sr-only">(current)</span></a></li>
-				<li><a href="#">Reports</a></li>
-				<li><a href="#">Analytics</a></li>
-				<li><a href="History.jsp">History (Today)</a></li>
+			</ul>
+			<ul class="navbar navbar-sidebar navbar-inverse">
+				<a href="doctorhome.jsp" title="Go to Today's History">History
+					(Today)</a>
 			</ul>
 
 
@@ -66,6 +76,11 @@
 				</script>
 			</h3>
 		</h3>
+	</div>
+	<div class="col-sm-8 col-sm-offset-3"></div>
+	<a
+		class="btn btn-primary btn-lg btn-fab btn-raised mdi-content-add btn-add-new-post"
+		href="addpatient.jsp" title="Add New Patient to Queue">+</a>
 	</div>
 </body>
 </html>

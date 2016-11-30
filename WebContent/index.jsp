@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page session="false" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +25,6 @@
 <link href="css/cover.css" rel="stylesheet">
 <link href="css/signin.css" rel="stylesheet">
 
-
-<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 <style>
 body {
 	background: url(images/pulse_line.jpg) no-repeat center center fixed;
@@ -55,7 +53,7 @@ body {
 								<li><a href="#">Services</a></li>
 								<li><a href="#">Privacy</a></li>
 								<li><a href="#">T&C</a></li>
-								<li><a href="Developers.jsp">{{ Credits }}</a></li>
+								<li><a href="developers.jsp">{{ Credits }}</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -76,6 +74,10 @@ body {
 								<%
 									}
 								%>
+								
+								
+								
+								
 								<h3 class="panel-title">Check In</h3>
 							</div>
 							<div class="panel-body">
