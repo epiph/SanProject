@@ -4,28 +4,28 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Register
+ * Servlet implementation class AddToHistory
  */
-@WebServlet("/Register")
-public class Register extends HttpServlet {
+@WebServlet("/AddToHistory")
+public class AddToHistory extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Register() {
+	public AddToHistory() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -47,47 +47,34 @@ public class Register extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
-		String first_name, last_name, faculty, department, doctor, gender, regNumber;
-		first_name = request.getParameter("firstName");
-		last_name = request.getParameter("lastName");
-		faculty = request.getParameter("faculty");
-		department = request.getParameter("department");
-		doctor = request.getParameter("doctor");
-		gender = request.getParameter("gender");
-		regNumber = request.getParameter("regNumber");
+		String regNumber = request.getParameter("regNumber");
+		String diagnosis = request.getParameter("diagnosis");
+		String prescription = request.getParameter("prescription");
+		Calendar calendar = Calendar.getInstance();
+		java.sql.Timestamp TreatmentDate = new java.sql.Timestamp(calendar.getTime()
+				.getTime());
 		Connection conn = null;
 		try {
-//			HttpSession session = request.getSession(false);
-			Cookie[] cookie = request.getCookies();
-			
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Stude",
 					"root", " ");
-			out.print("Connected to DB Successfully \n");
-			Statement sqlState = conn.createStatement();
-			String queryStatement = "insert into Queue values('"
-					+ regNumber + "','" + first_name + "','" + last_name
-					+ "','" + gender + "','" + faculty + "','" + department
-					+ "','" + doctor + "')";
-			sqlState.executeUpdate(queryStatement);
-			// response.sendRedirect("Register.jsp");
-			if(cookie!=null){
-				String name = cookie[0].getValue();
-				if (!name.equals("")||name!=null){
+			System.out.println("Connected successfully to DB");
+			PreparedStatement state = conn
+					.prepareStatement("insert into History values(?,?,?,?)");
+			state.setString(1, regNumber);
+			state.setString(2, prescription);
+			state.setString(3, diagnosis);
+			state.setTimestamp(4, TreatmentDate);
+			state.executeUpdate();
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("Register.jsp");
+					.getRequestDispatcher("pharmacy.jsp");
 			dispatcher.forward(request, response);
 			out.println("Registered Successfully");
-			}
-			}
-			else{
-				out.println("Login first");
-			}
 
 		} catch (SQLException | ClassNotFoundException e) {
-			out.println("SQLException:" + e.getMessage());
+			out.println("SQLException :" + e.getMessage());
 		}
-		
+
 	}
 
 }

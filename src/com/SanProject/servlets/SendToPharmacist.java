@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,7 +27,7 @@ public class SendToPharmacist extends HttpServlet {
 	 */
 	public SendToPharmacist() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -35,7 +36,7 @@ public class SendToPharmacist extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 	/**
@@ -46,8 +47,12 @@ public class SendToPharmacist extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
+		String regNumber = request.getParameter("regNumber");
 		String diagnosis = request.getParameter("diagnosis");
 		String prescription = request.getParameter("prescription");
+		Calendar calendar = Calendar.getInstance();
+		java.sql.Timestamp time = new java.sql.Timestamp(calendar.getTime()
+				.getTime());
 		Connection conn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -55,12 +60,14 @@ public class SendToPharmacist extends HttpServlet {
 					"root", " ");
 			System.out.println("Connected successfully to DB");
 			PreparedStatement state = conn
-					.prepareStatement("insert into DoctorToPharmacist values(?,?)");
-			state.setString(1, diagnosis);
+					.prepareStatement("insert into ChemistQueue values(?,?,?,?)");
+			state.setString(1, regNumber);
 			state.setString(2, prescription);
+			state.setString(3, diagnosis);
+			state.setTimestamp(4, time);
 			state.executeUpdate();
 			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("History.jsp");
+					.getRequestDispatcher("doctorhome.jsp");
 			dispatcher.forward(request, response);
 			out.println("Registered Successfully");
 

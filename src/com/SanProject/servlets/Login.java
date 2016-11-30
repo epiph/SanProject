@@ -56,7 +56,8 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("password");
 		Connection conn = null;
 		try {
-
+			
+			// Let's try to get a DB Connection, shall we? :)
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Stude",
 					"root", " ");
@@ -77,29 +78,38 @@ public class Login extends HttpServlet {
 				
 				// If the string equals "Admin", we redirect the user to the "Register.jsp" page
 				if("Admin".equals(userRole)){
-//				HttpSession session = request.getSession();
-//				session.setAttribute("user", username);
-					Cookie cookie = new Cookie("user", username);
-					response.addCookie(cookie);
-				
-				RequestDispatcher dispatcher = request
-						.getRequestDispatcher("Register.jsp");
-				dispatcher.forward(request, response);
+				HttpSession session = request.getSession();
+				session.setAttribute("user", username);
+					
+				response.sendRedirect("developers.jsp");
 				
 				
 				}
-				//If the value of the string equals "Reception", we redirect the user to the "Developers.jsp" Page
-				else if("Reception".equals(userRole)){
-//					HttpSession session = request.getSession();
-//					session.setAttribute("user", username);
-					Cookie cookie = new Cookie("user", username);
-					response.addCookie(cookie);
-					RequestDispatcher dispatcher = request
-							.getRequestDispatcher("Developers.jsp");
-					dispatcher.forward(request, response);
+				//Kama the value of the string equals "Reception", we redirect the user to the "RecepTiOniST.jsp" Page
+				else if("Receptionist".equals(userRole)){
+					HttpSession session = request.getSession();
+					session.setAttribute("user", username);
+					response.sendRedirect("ReceptionistHome.jsp");
 					
 				}
 				
+				// Kama the value of the Role String equals "Doctor" tunasend this user to the "doctorhome.jsp" page
+				else if("Doctor".equals(userRole)){
+					HttpSession session = request.getSession();
+					session.setAttribute("user", username);
+					
+					response.sendRedirect("doctorhome.jsp");
+					
+				}
+				
+				// Kama the value of the Role String equals "Chemist" tunasend this user to the "chemisthome.jsp" page
+				else if("Chemist".equals(userRole)){
+					HttpSession session = request.getSession();
+					session.setAttribute("user", username);
+					
+					response.sendRedirect("chemisthome.jsp");
+					
+				}
 			} else {
 				// If the user entered the wrong username+password combination, we redirect them to the login page
 				out.println("Wrong username and password combo");
