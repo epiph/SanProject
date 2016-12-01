@@ -26,7 +26,7 @@ SELECT * from History order by TreatmentDate;
 
 <body>
 <%
-	if (session.getAttribute("user")==null){
+	if (session.getAttribute("doctor")==null){
 		
 		response.sendRedirect("index.jsp");
 	}

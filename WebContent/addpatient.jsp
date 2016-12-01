@@ -38,7 +38,7 @@ SELECT * from Students where regNumber = ?
 
 <body>
 <%
-	if (session.getAttribute("user")==null){
+	if (session.getAttribute("receptionist")==null){
 		
 		response.sendRedirect("index.jsp");
 	}

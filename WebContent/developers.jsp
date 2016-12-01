@@ -16,7 +16,7 @@
 
 <body>
 <%
-	if (session.getAttribute("user")==null){
+	if (session.getAttribute("admin")==null){
 		response.sendRedirect("index.jsp");
 	}
 %>

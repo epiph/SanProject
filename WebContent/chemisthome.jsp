@@ -23,7 +23,7 @@ join Students where ChemistQueue.regNumber=Students.regNumber order by ChemistQu
 	response.setIntHeader("Refresh", 10);
 %>
 <%
-	if (session.getAttribute("user")==null){
+	if (session.getAttribute("chemist")==null){
 		System.out.println("No Session Attr");
 		response.sendRedirect("index.jsp");
 	}

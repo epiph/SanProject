@@ -79,7 +79,7 @@ public class Login extends HttpServlet {
 				// If the string equals "Admin", we redirect the user to the "Register.jsp" page
 				if("Admin".equals(userRole)){
 				HttpSession session = request.getSession();
-				session.setAttribute("user", username);
+				session.setAttribute("admin", username);
 					
 				response.sendRedirect("developers.jsp");
 				
@@ -88,7 +88,7 @@ public class Login extends HttpServlet {
 				//Kama the value of the string equals "Reception", we redirect the user to the "RecepTiOniST.jsp" Page
 				else if("Receptionist".equals(userRole)){
 					HttpSession session = request.getSession();
-					session.setAttribute("user", username);
+					session.setAttribute("receptionist", username);
 					response.sendRedirect("ReceptionistHome.jsp");
 					
 				}
@@ -96,7 +96,7 @@ public class Login extends HttpServlet {
 				// Kama the value of the Role String equals "Doctor" tunasend this user to the "doctorhome.jsp" page
 				else if("Doctor".equals(userRole)){
 					HttpSession session = request.getSession();
-					session.setAttribute("user", username);
+					session.setAttribute("doctor", username);
 					
 					response.sendRedirect("doctorhome.jsp");
 					
@@ -105,7 +105,7 @@ public class Login extends HttpServlet {
 				// Kama the value of the Role String equals "Chemist" tunasend this user to the "chemisthome.jsp" page
 				else if("Chemist".equals(userRole)){
 					HttpSession session = request.getSession();
-					session.setAttribute("user", username);
+					session.setAttribute("chemist", username);
 					
 					response.sendRedirect("chemisthome.jsp");
 					

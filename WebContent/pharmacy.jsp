@@ -32,7 +32,7 @@ SELECT * from ChemistQueue where regNumber = ?
 </head>
 <body>
 <%
-	if (session.getAttribute("user")==null){
+	if (session.getAttribute("chemist")==null){
 		
 		response.sendRedirect("index.jsp");
 	}
@@ -80,12 +80,13 @@ SELECT * from ChemistQueue where regNumber = ?
 
 			<div>
 				<form action="AddToHistory"method="POST">
+					
+
+					<div class="form-group">
 					<div class="col-sm-6">
 						<input name="regNumber" type="text" class="form-control"
 						 value="${param.regNumber}" readonly>
 					</div>
-
-					<div class="form-group">
 						<label for="Prescription">Prescription</label>
 						
 						<textarea class="form-control" rows="5" id="prescription"

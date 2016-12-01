@@ -92,7 +92,7 @@
 							class="btn btn-success col-md-3">Save</button>
 							
 						<a class="btn btn-info btn-sm col-sm-3 col-sm-offset-1"
-							href='history.jsp?regNumber=<c:out value="${param.regNumber}"/>'>View History</a>
+							href='historyhome.jsp'>View History</a>
 						
 						
 						<a class="btn btn-danger btn-sm col-sm-offset-1"

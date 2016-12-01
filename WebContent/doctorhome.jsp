@@ -38,7 +38,7 @@ SELECT * from ReceptionistQueue order by time;
 
 <body>
 	<%
-	if (session.getAttribute("user")==null){
+	if (session.getAttribute("doctor")==null){
 		response.sendRedirect("index.jsp");
 	}
 %>

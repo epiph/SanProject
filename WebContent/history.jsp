@@ -33,7 +33,7 @@ select * from History where regNumber = ? and TreatmentDate = ?
 
 <%-- Let's set the session attribute --%>
 <%
-	if (session.getAttribute("user")==null){
+	if (session.getAttribute("doctor")==null){
 		
 		response.sendRedirect("index.jsp");
 	}
