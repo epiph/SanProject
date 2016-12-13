@@ -33,7 +33,7 @@
 			</button>
 			<a class="navbar-brand" href="ReceptionistHome.jsp">Pulse</a>
 		</div>
-		<div id="navbar" class="navbar-collapse collapse">
+		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#">Dashboard</a></li>
 				<li><a href="#">Settings</a></li>
@@ -82,5 +82,7 @@
 		class="btn btn-primary btn-lg btn-fab btn-raised mdi-content-add btn-add-new-post"
 		href="addpatient.jsp" title="Add New Patient to Queue">+</a>
 	</div>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 </html>

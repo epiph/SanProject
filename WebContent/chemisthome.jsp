@@ -109,5 +109,9 @@ join Students where ChemistQueue.regNumber=Students.regNumber order by ChemistQu
 					</tr>
 				</c:forEach>
 		</table>
+		</div>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
+
 </html>

@@ -50,7 +50,6 @@ public class Login extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
-//		request.setAttribute("errors", false);
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");

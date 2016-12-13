@@ -119,5 +119,7 @@ SELECT * from ChemistQueue where regNumber = ?
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 </html>

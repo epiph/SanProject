@@ -46,15 +46,14 @@ SELECT * from ReceptionistQueue order by time;
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
+					data-toggle="collapse" data-target="#navbar">
 					<span class="sr-only">Toggle navigation</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="ReceptionistHome.jsp"><i><strong>Pulse</strong></i></a>
 			</div>
-			<div id="navbar" class="navbar-collapse collapse">
+			<div id="navbar" class="collapse navbar-collapse ">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="doctorhome.jsp">History</a></li>
 					<li><a href="#">Settings</a></li>
@@ -82,7 +81,7 @@ SELECT * from ReceptionistQueue order by time;
 	</div>
 	<div
 		class="table-responsive col-md-8 col-lg-8 col-lg-offset-2 col-md-offset-1">
-		<table class="table table-responsive table-striped table-hover">
+		<table class="table table-responsive table-striped table-hover table-condensed">
 			<thead>
 				<tr>
 					<th>Reg.Number</th>
@@ -106,5 +105,10 @@ SELECT * from ReceptionistQueue order by time;
 					</tr>
 				</c:forEach>
 		</table>
+		<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+		
+		 <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.3.min.js"><\/script>')</script>
+		 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+		 
 </body>
 </html>

@@ -107,5 +107,7 @@
 			<a href="#"><span><i class="fa fa-fw fa-lg fa-facebook"></i></span></a>
 		</div>
 	</div>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 </html>

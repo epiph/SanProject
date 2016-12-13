@@ -27,5 +27,6 @@
 		<a href="chemisthome.jsp">Go Home</a>
 		<c:redirect url="chemisthome.jsp" />
 	</c:if>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
 </body>
 </html>

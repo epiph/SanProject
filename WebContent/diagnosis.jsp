@@ -25,7 +25,7 @@
 <sql:query dataSource="${snapshot}" var="result">
  select * from ReceptionistQueue where regNumber = ?
 <sql:param value="${param.regNumber}"></sql:param>
-	
+
 </sql:query>
 </head>
 <body>
@@ -74,7 +74,7 @@
 				<form action="SendToPharmacist" method="POST">
 					<div class="col-sm-6">
 						<input name="regNumber" type="text" class="form-control"
-						 value="${param.regNumber}" hidden>
+							value="${param.regNumber}" hidden>
 					</div>
 					<div class="form-group">
 						<label for="Diagnosis">Diagnosis</label>
@@ -90,12 +90,10 @@
 					<div>
 						<button id="btnSubmit" type="submit"
 							class="btn btn-success col-md-3">Save</button>
-							
+
 						<a class="btn btn-info btn-sm col-sm-3 col-sm-offset-1"
-							href='historyhome.jsp'>View History</a>
-						
-						
-						<a class="btn btn-danger btn-sm col-sm-offset-1"
+							href='historyhome.jsp'>View History</a> <a
+							class="btn btn-danger btn-sm col-sm-offset-1"
 							href="javascript:confirmGo('Sure to dequeue this patient?','delete.jsp?regNumber=<c:out value="${param.regNumber}"/>')">DeQueue</a>
 
 					</div>
@@ -105,5 +103,7 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 </html>

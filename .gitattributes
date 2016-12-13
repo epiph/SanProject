@@ -1,0 +1,4 @@
+*.jsp linguist-language=Java
+WebContent/css/* linguist-vendored
+WebContent/js/* linguist-vendored
+
